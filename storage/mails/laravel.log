@@ -1,0 +1,16 @@
+[2023-04-23 11:38:30] local.DEBUG: Message-ID: <a6bc9f035c8ab85a6accd5a203bae38d@laravel-medcourt.loc>
+Date: Sun, 23 Apr 2023 11:38:30 +0000
+Subject: =?utf-8?Q?=D0=A0=D0=B5=D0=B3=D0=B8=D1=81=D1=82=D1=80=D0=B0?=
+ =?utf-8?Q?=D1=86=D0=B8=D1=8F_=D0=BD=D0=BE=D0=B2=D0=BE=D0=B3=D0=BE_=D1=81?=
+ =?utf-8?Q?=D0=BE=D1=82=D1=80=D1=83=D0=B4=D0=BD=D0=B8=D0=BA=D0=B0?=
+From: DEMO-SITE <demosite@example.com>
+To: demo@shop.ru
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<h1>Регистрация нового сотрудника</h1>
+
+<p><strong>Имя:</strong> Швейцария</p>
+<p><strong>Почта:</strong> demo@shop.ru</p>
+<p><strong>Пароль:</strong> $2y$10$uvkv/IZPB.T9sAbEBCCbX.oqELVKRUVCJss9aMEvBQS4Bai0c0mgq</p>  
