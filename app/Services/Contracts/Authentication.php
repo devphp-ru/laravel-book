@@ -4,10 +4,15 @@ namespace App\Services\Contracts;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-interface Authentication extends Service
+/**
+ * Interface Authentication
+ *
+ * @package App\Services\Contracts
+ */
+interface Authentication
 {
 	/**
-	 * аутентификация пользователя
+	 * Аутентификация пользователя
 	 *
 	 * @param FormRequest $request
 	 * @return bool
@@ -15,10 +20,11 @@ interface Authentication extends Service
 	public function checkUser(FormRequest $request): bool;
 
 	/**
-	 * аутентификация админа
+	 * Аутентификация админа
 	 *
 	 * @param FormRequest $request
 	 * @return bool
 	 */
 	public function checkAdmin(FormRequest $request): bool;
+
 }

@@ -8,14 +8,24 @@ use App\Services\AuthenticationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
+/**
+ * Class LoginController
+ *
+ * @package App\Http\Controllers\Auth
+ */
 class LoginController extends Controller
 {
 	/** @var AuthenticationService  */
-	private AuthenticationService $service;
+	private AuthenticationService $authenticationService;
 
-	public function __construct(AuthenticationService $service)
+	/**
+	 * LoginController constructor.
+	 *
+	 * @param AuthenticationService $authenticationService
+	 */
+	public function __construct(AuthenticationService $authenticationService)
 	{
-		$this->service = $service;
+		$this->authenticationService = $authenticationService;
 	}
 
 	/**
@@ -36,11 +46,11 @@ class LoginController extends Controller
 	 */
 	public function login(LoginRequest $request): RedirectResponse
 	{
-		if ($this->service->checkUser($request)) {
+		if ($this->authenticationService->checkUser($request)) {
 			return redirect()
 				->route('site.index')
 				->with(['success' => 'Вы вошли в систему.']);
-		} elseif ($this->service->checkAdmin($request)) {
+		} elseif ($this->authenticationService->checkAdmin($request)) {
 			return redirect()
 				->route('admin.index')
 				->with(['success' => 'Вы вошли в систему.']);
@@ -48,4 +58,5 @@ class LoginController extends Controller
 
 		return back()->withErrors(['error' => 'Неверный логин/пароль.']);
 	}
+
 }

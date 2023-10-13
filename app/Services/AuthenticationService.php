@@ -6,6 +6,11 @@ use App\Services\Contracts\Authentication;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class AuthenticationService
+ *
+ * @package App\Services
+ */
 class AuthenticationService implements Authentication
 {
 	/** @var string  */
@@ -15,7 +20,7 @@ class AuthenticationService implements Authentication
 	private const GUARD_ADMIN = 'admin';
 
 	/**
-	 * аутентификация пользователя
+	 * Аутентификация пользователя
 	 *
 	 * @param FormRequest $request
 	 * @return bool
@@ -26,7 +31,7 @@ class AuthenticationService implements Authentication
 	}
 
 	/**
-	 * аутентификация админа
+	 * Аутентификация админа
 	 *
 	 * @param FormRequest $request
 	 * @return bool
@@ -37,7 +42,7 @@ class AuthenticationService implements Authentication
 	}
 
 	/**
-	 * антентификация пользователя (user, admin)
+	 * Антентификация пользователя (user, admin)
 	 *
 	 * @param FormRequest $request
 	 * @param string $guard
@@ -55,4 +60,5 @@ class AuthenticationService implements Authentication
 
 		return false;
 	}
+
 }
