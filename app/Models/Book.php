@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,12 +11,13 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * Class Book
- * @package App\Models
+ *
  * @mixin Builder
+ * @package App\Models
  */
-class Book extends Model
+class Book extends BaseModel
 {
-    use HasFactory, Sluggable;
+    use Sluggable;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -35,6 +34,9 @@ class Book extends Model
 		'cover',
 	];
 
+	/** @var int  */
+	private const MIN_LENGTH_TEXT = 80;
+
 	/**
 	 * Return the sluggable configuration array for this model.
 	 *
@@ -50,6 +52,8 @@ class Book extends Model
 	}
 
 	/**
+	 * Получить автора книги
+	 *
 	 * @return BelongsTo
 	 */
 	public function author(): BelongsTo
@@ -58,6 +62,8 @@ class Book extends Model
 	}
 
 	/**
+	 * Получить категорию книги
+	 *
 	 * @return BelongsTo
 	 */
 	public function category(): BelongsTo
@@ -66,6 +72,8 @@ class Book extends Model
 	}
 
 	/**
+	 * Получить комментарии книги
+	 *
 	 * @return HasMany
 	 */
 	public function comments(): HasMany
@@ -74,11 +82,13 @@ class Book extends Model
 	}
 
 	/**
+	 * Получить короткое описание книги
+	 *
 	 * @return string
 	 */
 	public function hortDescription(): string
 	{
-		return mb_substr($this->description, 0, 80) . '...';
+		return \mb_substr($this->description, 0, self::MIN_LENGTH_TEXT) . '...';
 	}
 
 	/**
@@ -110,4 +120,5 @@ class Book extends Model
 	{
 		return preg_match('#^covers#', $this->cover) ? asset("storage/{$this->cover}") : $this->cover;
 	}
+
 }
