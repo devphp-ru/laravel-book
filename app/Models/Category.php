@@ -5,15 +5,15 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Category
- * @package App\Models
+ *
  * @mixin Builder
+ * @package App\Models
  */
-class Category extends Model
+class Category extends BaseModel
 {
     use HasFactory, Sluggable;
 
@@ -26,6 +26,9 @@ class Category extends Model
 		'slug',
 		'title',
 	];
+
+	/** @var string  */
+	public const IS_ACTIVE = 'Y';
 
 	/**
 	 * Return the sluggable configuration array for this model.
@@ -42,10 +45,24 @@ class Category extends Model
 	}
 
 	/**
+	 * Получить книги принадлежащие категории
+	 *
 	 * @return HasMany
 	 */
 	public function books(): HasMany
 	{
 		return $this->hasMany(Book::class);
 	}
+
+	/**
+	 * Диапазон запроса, включающий только активные категории
+	 *
+	 * @param Builder $builder
+	 * @return Builder
+	 */
+	public function scopeIsActive(Builder $builder): Builder
+	{
+		return $builder->where('is_active', self::IS_ACTIVE);
+	}
+
 }
