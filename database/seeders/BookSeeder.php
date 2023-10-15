@@ -8,6 +8,11 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
+/**
+ * Class BookSeeder
+ *
+ * @package Database\Seeders
+ */
 class BookSeeder extends Seeder
 {
     /**
@@ -19,11 +24,21 @@ class BookSeeder extends Seeder
     {
         $date = now();
 
-        $items = [];
+		$items[] = [
+			'category_id' => 2,
+			'author_id' => 25,
+			'slug' => 'kniga-1',
+			'title' => 'Книга 1',
+			'description' => 'book description',
+			'rating' => 15,
+			'cover' => 'https://via.placeholder.com/180x250',
+			'created_at' => $date,
+			'updated_at' => $date,
+		];
 
 		$faker = Container::getInstance()->make(Generator::class);
 
-        for ($i = 1; $i <= 557; $i++) {
+        for ($i = 2; $i <= 557; $i++) {
         	$title = 'Книга ' . $i;
         	$items[] = [
         		'category_id' => mt_rand(1, 5),
@@ -40,4 +55,5 @@ class BookSeeder extends Seeder
 
         DB::table('books')->insert($items);
     }
+
 }
